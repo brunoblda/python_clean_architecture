@@ -1,4 +1,15 @@
 repos:
+  - repo: https://github.com/psf/black
+    rev: 24.1.1
+    hooks:
+    - id: black
+      language_version: python3.12.2
+      stages: [commit]
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.0.0
+    hooks:
+    - id: flake8
+      stages: [commit]
   - repo: local
     hooks:
       - id: pylint
@@ -11,8 +22,17 @@ repos:
             "-rn", # Only display messages
             "-sn", # Don't display the score
             "--rcfile=.pylintrc", # Link to your config file
-            "--load-plugins=pylint.extensios.docparams", # Load an extension
+            "--load-plugins=pylint.extensions.docparams", # Load an extension
           ]
+  - repo: local
+    hooks:
+    - id: pytest
+      name: pytest
+      language: system
+      entry: pytest -v -s
+      pass_filenames: false
+      always_run: true
+      stages: [commit]
   - repo: local
     hooks:
       - id: requirements
