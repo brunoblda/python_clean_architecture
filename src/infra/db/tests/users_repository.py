@@ -2,9 +2,10 @@
 
 from typing import List
 from src.domain.models.users import Users
+from src.data.interfaces.users_repository import UsersRepositoryInterface
 
 
-class UsersRepositorySpy:
+class UsersRepositorySpy(UsersRepositoryInterface):
     """Users Repository Class"""
 
     def __init__(self) -> None:
