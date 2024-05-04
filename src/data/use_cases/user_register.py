@@ -6,7 +6,7 @@ from src.domain.use_cases.user_register import UserRegister as UserRegisterInter
 from src.data.interfaces.users_repository import UsersRepositoryInterface
 
 
-class UserRegiter(UserRegisterInterface):
+class UserRegister(UserRegisterInterface):
     """Class UserRegister"""
 
     def __init__(self, users_repository: UsersRepositoryInterface) -> None:

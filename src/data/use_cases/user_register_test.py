@@ -1,5 +1,5 @@
 from src.infra.db.tests.users_repository import UsersRepositorySpy
-from .user_register import UserRegiter
+from .user_register import UserRegister
 
 
 def test_register():
@@ -8,7 +8,7 @@ def test_register():
     age = 3
 
     repo = UsersRepositorySpy()
-    user_register = UserRegiter(repo)
+    user_register = UserRegister(repo)
 
     response = user_register.register(first_name, last_name, age)
 
@@ -30,7 +30,7 @@ def test_register_first_name_error():
     age = 3
 
     repo = UsersRepositorySpy()
-    user_register = UserRegiter(repo)
+    user_register = UserRegister(repo)
 
     try:
         user_register.register(first_name, last_name, age)
