@@ -29,10 +29,10 @@ class UserRegister(UserRegisterInterface):
     def __validate_name(cls, name: str) -> None:
         """Validate name"""
         if not name.isalpha():
-            raise HttpBadRequestError("Nome invalido para a busca")
+            raise HttpBadRequestError("Nome invalido para o cadastro")
 
         if len(name) > 18:
-            raise HttpBadRequestError("Nome muito grande para a busca")
+            raise HttpBadRequestError("Nome muito grande para o cadastro")
 
     def __registry_user_informations(
         self, first_name: str, last_name: str, age: int
