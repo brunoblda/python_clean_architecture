@@ -1,3 +1,4 @@
+# pylint: disable=protected-access
 """ Test cases for the database connection settings. """
 
 # from icecream import ic
@@ -10,6 +11,9 @@ from .connection import DBConnectionHandler
 def test_create_database_engine():
     """Test create database engine"""
     db_connection_handle = DBConnectionHandler()
+    db_connection_handle.__connection_string = (
+        "mysql+pymysql://root@127.0.0.1:3306/clean_database"
+    )
 
     engine = db_connection_handle.get_engine()
     # print()

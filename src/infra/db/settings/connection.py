@@ -8,7 +8,7 @@ class DBConnectionHandler:
     """DBConnectionHandler class"""
 
     def __init__(self) -> None:
-        self.__connection_string = "mysql+pymysql://root@127.0.0.1:3306/clean_database"
+        self.__connection_string = "mysql+pymysql://root@mysqldb_clean/clean_database"
         self.__engine = self.__create_database_engine()
         self.session = None
 

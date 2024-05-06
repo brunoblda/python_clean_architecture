@@ -1,0 +1,27 @@
+services:
+  mysqldb_clean:
+    image: mysql:latest
+    container_name: mysqldb_clean
+    restart: always
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 3336:3306
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - mysqlVolumeClean:/var/lib/mysql
+      - mysqlConfigClean:/etc/mysql
+
+  clean-docker-python:
+    build:
+      context: .
+    container_name: clean-docker-python
+    restart: always
+    ports:
+      - 4000:5000
+    depends_on:
+      - mysqldb_clean
+
+volumes:
+  mysqlVolumeClean:
+  mysqlConfigClean:

@@ -1,3 +1,4 @@
+# pylint: disable=protected-access
 """Test for UsersRepository"""
 
 import pytest
@@ -6,14 +7,17 @@ from icecream import ic
 from src.infra.db.settings.connection import DBConnectionHandler
 from .users_repository import UsersRepository
 
-db_connection_handler = DBConnectionHandler()
-connection = db_connection_handler.get_engine().connect()
-
 
 @pytest.mark.skip(reason="Sensive test")
 def test_insert_user():
     # teste de integracao com o banco de dados
     """Test insert_user in UsersRepository"""
+
+    db_connection_handler = DBConnectionHandler()
+    db_connection_handler.__connection_string = (
+        "mysql+pymysql://root@127.0.0.1:3306/clean_database"
+    )
+    connection = db_connection_handler.get_engine().connect()
 
     mocked_first_name = "first_i"
     mocked_last_name = "last_i"
@@ -51,6 +55,12 @@ def test_insert_user():
 def test_select_user():
     # teste de integracao com o banco de dados
     """Test select_user in UsersRepository"""
+
+    db_connection_handler = DBConnectionHandler()
+    db_connection_handler.__connection_string = (
+        "mysql+pymysql://root@127.0.0.1:3306/clean_database"
+    )
+    connection = db_connection_handler.get_engine().connect()
 
     mocked_first_name = "first_s"
     mocked_last_name = "last_s"
